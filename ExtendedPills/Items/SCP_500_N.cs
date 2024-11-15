@@ -74,11 +74,18 @@ public class SCP_500_N : CustomItem
                         if (AlwaysDoDirectDamage)
                         {
                             if (p.Health < DamagePerSecond) p.Kill("SCP-500-N");
-                            else p.Health -= DamagePerSecond;
+                            else
+                            {
+                                if (ShouldDamageSelf && p ==  ev.Player) p.Health -= DamagePerSecond + 7;
+                                else 
+                                    p.Health -= DamagePerSecond;
+                            };
                         }
                         else
                         {
-                            p.Hurt(DamagePerSecond, DamageType.Asphyxiation);
+                            if (ShouldDamageSelf && p ==  ev.Player) p.Hurt(DamagePerSecond + 7, DamageType.Asphyxiation);
+                            else 
+                                p.Hurt(DamagePerSecond, DamageType.Asphyxiation);
                         }
                     }
                 });
