@@ -15,16 +15,16 @@ public class Config : IConfig
     [Description("Whether or not debug messages shoudl be shown.")]
     public bool Debug { get; set; } = true;
     [Description("The folder path where Items configs will be stored.")]
-    public string ItemsFolder { get; set; } = Path.Combine(Paths.Configs, "Items");
+    public string ConfigFolder { get; set; } = Path.Combine(Paths.Configs, "Items");
     [Description("The file name to load role configs from.")]
-    public string RolesFile { get; set; } = "global.yml";
+    public string ConfigFile { get; set; } = "extendedpills.yml";
     [Description("Whether or not this plugin is enabled.")]
     public bool IsEnabled { get; set; } = true;
 
     public void LoadConfigs()
     {
-        if (!Directory.Exists(ItemsFolder)) Directory.CreateDirectory(ItemsFolder);
-        string text = Path.Combine(ItemsFolder, RolesFile);
+        if (!Directory.Exists(ConfigFolder)) Directory.CreateDirectory(ConfigFolder);
+        string text = Path.Combine(ConfigFolder, ConfigFile);
         if (!File.Exists(text))
         {
             Log.Warn($"The file {text} does not exist. Creating a new one.");

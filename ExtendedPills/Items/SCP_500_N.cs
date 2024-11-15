@@ -5,6 +5,7 @@ using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using MEC;
+using PlayerRoles;
 using UnityEngine;
 
 namespace ExtendedPills.Items;
@@ -70,6 +71,7 @@ public class SCP_500_N : CustomItem
                 {
                     foreach (var p in GetPlayersInRadius(ev.Player, Radius, ShouldDamageSelf))
                     {
+                        if (p.Role == RoleTypeId.Scp079) continue;
                         if (!DamageSCP && p.IsScp) continue;
                         if (AlwaysDoDirectDamage)
                         {
