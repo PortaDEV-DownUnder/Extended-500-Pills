@@ -46,8 +46,11 @@ public class SCP_500_B : CustomItem
     private void UsingItem(UsingItemEventArgs ev)
     {
         if (!Check(ev.Player.CurrentItem)) return;
-        Timing.CallDelayed(1.5f, () =>
+        Timing.CallDelayed(0.6f, () =>
         {
+            if (!Check(ev.Player.CurrentItem)) return;
+            Timing.CallDelayed(0.9f, () =>
+            {
             switch (ev.Player.Role.Team)
             {
                 case Team.FoundationForces:
@@ -64,6 +67,7 @@ public class SCP_500_B : CustomItem
                     break;
             }
             ev.Player.EnableEffect<AmnesiaVision>(10f, true);
+        });
         });
     }
 }

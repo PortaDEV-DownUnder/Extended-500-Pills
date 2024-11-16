@@ -56,35 +56,43 @@ namespace ExtendedPills.Items
         private void OnUsingItem(UsingItemEventArgs ev)
         {
             if (!Check(ev.Player.CurrentItem)) return;
-            Timing.CallDelayed(1.5f, () =>
-            {
-                RoleTypeId RTID;
-                switch (ev.Player.Role.Team)
-                {
-                    case Team.ClassD:
-                        RTID = RoleTypeId.ClassD;
-                        break;
-                    case Team.ChaosInsurgency:
-                        RTID = RoleTypeId.ChaosConscript;
-                        break;
-                    case Team.FoundationForces:
-                        RTID = RoleTypeId.NtfPrivate;
-                        break;
-                    default:
-                        RTID = RoleTypeId.NtfPrivate;
-                        break;
-                }
 
-                List<Exiled.API.Features.Player> list = Exiled.API.Features.Player.List.Where(x => x.IsDead).ToList();
-                if (list.Count() == 0) ev.Player.Broadcast(this.NoPlayers, false);
-                else
+            Timing.CallDelayed(0.6f, () =>
+            {
+                if (!Check(ev.Player.CurrentItem)) return;
+                Timing.CallDelayed(0.9f, () =>
                 {
-                    Random random = new();
-                    Exiled.API.Features.Player player = list[random.Next(list.Count())];
-                    player.Role.Set(RTID, SpawnReason.None);
-                    player.Position = ev.Player.Position;
-                }
+                    RoleTypeId RTID;
+                    switch (ev.Player.Role.Team)
+                    {
+                        case Team.ClassD:
+                            RTID = RoleTypeId.ClassD;
+                            break;
+                        case Team.ChaosInsurgency:
+                            RTID = RoleTypeId.ChaosConscript;
+                            break;
+                        case Team.FoundationForces:
+                            RTID = RoleTypeId.NtfPrivate;
+                            break;
+                        default:
+                            RTID = RoleTypeId.NtfPrivate;
+                            break;
+                    }
+
+                    List<Exiled.API.Features.Player> list = Exiled.API.Features.Player.List.Where(x => x.IsDead)
+                        .ToList();
+                    if (list.Count() == 0) ev.Player.Broadcast(this.NoPlayers, false);
+                    else
+                    {
+                        Random random = new();
+                        Exiled.API.Features.Player player = list[random.Next(list.Count())];
+                        player.Role.Set(RTID, SpawnReason.None);
+                        player.Position = ev.Player.Position;
+                    }
+                });
             });
+
+
         }
     }
 }

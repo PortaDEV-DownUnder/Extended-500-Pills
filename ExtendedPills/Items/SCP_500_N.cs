@@ -63,8 +63,11 @@ public class SCP_500_N : CustomItem
     private void OnUsingItem(UsingItemEventArgs ev)
     {
         if (!Check(ev.Player.CurrentItem)) return;
-        Timing.CallDelayed(1f, () =>
+        Timing.CallDelayed(0.6f, () =>
         {
+            if (!Check(ev.Player.CurrentItem)) return;
+            Timing.CallDelayed(0.9f, () =>
+            {
             for (int i = 0; i < 10; i++)
             {
                 Timing.CallDelayed(i, () =>
@@ -92,6 +95,7 @@ public class SCP_500_N : CustomItem
                     }
                 });
             }
+        });
         });
     }
     

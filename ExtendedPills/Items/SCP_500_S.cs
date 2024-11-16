@@ -39,11 +39,15 @@ public class SCP_500_S : CustomItem
     private void UsingItem(UsingItemEventArgs ev)
     {
         if (!Check(ev.Player.CurrentItem)) return;
-        Timing.CallDelayed(1f, () =>
+        Timing.CallDelayed(0.6f, () =>
         {
+            if (!Check(ev.Player.CurrentItem)) return;
+            Timing.CallDelayed(0.9f, () =>
+            {
             ev.Player.SyncEffect(Duration < 0
                 ? new Effect(EffectType.MovementBoost, float.MaxValue, (byte)new Random().Next(MinValue, MaxValue))
                 : new Effect(EffectType.MovementBoost, Duration, (byte)new Random().Next(MinValue, MaxValue)));
+            });
         });
     }
 

@@ -41,12 +41,16 @@ public class SCP_500_T : CustomItem
     private void UsingItem(UsingItemEventArgs ev)
     {
         if (!Check(ev.Player.CurrentItem)) return;
-        Timing.CallDelayed(1.5f, () =>
+        Timing.CallDelayed(0.6f, () =>
         {
+            if (!Check(ev.Player.CurrentItem)) return;
+            Timing.CallDelayed(0.9f, () =>
+            {
             ev.Player.ShowHint("you start to feel dizzy", 3f);
             ev.Player.EnableEffect<Blinded>(this.Duration, true);
             Timing.WaitForSeconds(2f);
             ev.Player.RandomTeleport(typeof(Room));
+        });
         });
     }
 
