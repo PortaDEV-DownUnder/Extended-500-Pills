@@ -41,7 +41,7 @@ public class SCP_500_T : CustomItem
     private void UsingItem(UsingItemEventArgs ev)
     {
         if (!Check(ev.Player.CurrentItem)) return;
-        Timing.CallDelayed(1f, () =>
+        Timing.CallDelayed(1.5f, () =>
         {
             ev.Player.ShowHint("you start to feel dizzy", 3f);
             ev.Player.EnableEffect<Blinded>(this.Duration, true);

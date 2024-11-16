@@ -43,6 +43,9 @@
         <Reference Include="Assembly-CSharp-firstpass">
           <HintPath>..\..\..\OneDrive\Desktop\ExiledDLLs\Assembly-CSharp-firstpass.dll</HintPath>
         </Reference>
+        <Reference Include="CommandSystem.Core">
+          <HintPath>..\..\..\OneDrive\Desktop\ExiledDLLs\CommandSystem.Core.dll</HintPath>
+        </Reference>
         <Reference Include="Exiled.API">
           <HintPath>..\..\..\OneDrive\Desktop\ExiledDLLs\Exiled.API.dll</HintPath>
         </Reference>
